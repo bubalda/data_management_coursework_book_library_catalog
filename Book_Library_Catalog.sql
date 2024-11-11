@@ -53,7 +53,7 @@ CREATE TABLE `user` (
   `UserIcon` varchar(255) NOT NULL,
   `UserPermissionLevel` int(11) NOT NULL,
   `PhoneNumber` varchar(20) NOT NULL UNIQUE,
-  `Email` varchar(32) NOT NULL UNIQUE,
+  `Email` varchar(32) NOT NULL UNIQUE
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

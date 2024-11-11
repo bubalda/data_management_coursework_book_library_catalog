@@ -222,7 +222,7 @@
                                 <div class="card-body">
                                     <div class="chart-area">
                                                 <!--   YOUR ERD DIAGRAM IMAGE -->
-                                        <img class=" d-flex" src="images/Book_Library_Catalog_erdiagram.png" width="70px", height="70px" alt="ERD of Project" > 
+                                        <img class=" d-flex" src="images/Book_Library_Catalog_erdiagram.png" width="359px", height="359px" alt="ERD of Project" > 
                                         
                                       
                                     </div>
