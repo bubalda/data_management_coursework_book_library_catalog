@@ -21,53 +21,88 @@
                         //***************************** */
                         // Example Query 1
                         $sql1 = "SELECT * FROM author"; //Query
-                        $queryTitle1 = "USER Table";
-                        $queryDescription1 = "Show All User Table Records";
+                        $queryTitle1 = "Author Table";
+                        $queryDescription1 = "Show All Author Table Records";
                         //CALL FUNCTION to generate table
                         generate_table($conn, $sql1, $queryTitle1, $queryDescription1);
 
                         //***************************** */
                         // Example Query 2
-                        $sql2 = "SELECT * FROM book"; //Query
-                        $queryTitle2 = "Posts Table";
-                        $queryDescription2 = "Show All Posts Table Records";
+                        $sql1 = "SELECT * FROM book"; //Query
+                        $queryTitle1 = "Books Table";
+                        $queryDescription1 = "Show All Books Table Records";
 
                         //CALL FUNCTION to generate table
-                        generate_table($conn, $sql2, $queryTitle2, $queryDescription2);
+                        generate_table($conn, $sql1, $queryTitle1, $queryDescription1);
 
                         //***************************** */
                         // Example Query 3
                         $sql1 = "SELECT * FROM rating"; //Query
-                        $queryTitle1 = "USER Posts Table";
-                        $queryDescription1 = "Show All User Posts Table Records";
+                        $queryTitle1 = "Ratings Table";
+                        $queryDescription1 = "Show All rating Table Records";
                         //CALL FUNCTION to generate table
                         generate_table($conn, $sql1, $queryTitle1, $queryDescription1);
 
                         //***************************** */
                         // Example Query 4
-                        $sql2 = "SELECT * FROM Mentions"; //Query
-                        $queryTitle2 = "Mentions Table";
-                        $queryDescription2 = "Show All Mentions Table Records";
+                        $sql1 = "SELECT * FROM bookgenre"; //Query
+                        $queryTitle1 = "BookGenres Table";
+                        $queryDescription1 = "Show All Books' Genres Table Records";
 
                         //CALL FUNCTION to generate table
-                        generate_table($conn, $sql2, $queryTitle2, $queryDescription2);
-
+                        generate_table($conn, $sql1, $queryTitle1, $queryDescription1);
+                        
                         //***************************** */
                         // Example Query 5
-                        $sql2 = "SELECT * FROM Hashtag"; //Query
-                        $queryTitle2 = "Hashtag Table";
-                        $queryDescription2 = "Show All Hashtag Table Records";
-
+                        $sql1 = "SELECT * FROM bookmarkedbook"; //Query
+                        $queryTitle1 = "BookmarkedBooks Table";
+                        $queryDescription1 = "Show All Bookmarked Books' Table Records";
                         //CALL FUNCTION to generate table
-                        generate_table($conn, $sql2, $queryTitle2, $queryDescription2);
+                        generate_table($conn, $sql1, $queryTitle1, $queryDescription1);
+                        
+                        //***************************** */
+                        // Example Query 6
+                        $sql1 = "SELECT * FROM borrowhistory"; //Query
+                        $queryTitle1 = "BorrowHistory Table";
+                        $queryDescription1 = "Show All Borrow History Table Records";
+                        //CALL FUNCTION to generate table
+                        generate_table($conn, $sql1, $queryTitle1, $queryDescription1);
+                        
+                        
+                        //***************************** */
+                        // Example Query 7
+                        $sql1 = "SELECT * FROM favourites"; //Query
+                        $queryTitle1 = "Favourites Table";
+                        $queryDescription1 = "Show All Favourites Table Records";
+                        //CALL FUNCTION to generate table
+                        generate_table($conn, $sql1, $queryTitle1, $queryDescription1);
+
+                        //***************************** */
+                        // Example Query 8
+                        $sql1 = "SELECT * FROM following"; //Query
+                        $queryTitle1 = "Following Table";
+                        $queryDescription1 = "Show All Following Table Records";
+                        //CALL FUNCTION to generate table
+                        generate_table($conn, $sql1, $queryTitle1, $queryDescription1);
+
+                        //***************************** */
+                        // Example Query 9
+                        $sql1 = "SELECT * FROM genre"; //Query
+                        $queryTitle1 = "Genres Table";
+                        $queryDescription1 = "Show All Genres Table Records";
+                        //CALL FUNCTION to generate table
+                        generate_table($conn, $sql1, $queryTitle1, $queryDescription1);
+
+                        //***************************** */
+                        // Example Query 10
+                        $sql1 = "SELECT * FROM user"; //Query
+                        $queryTitle1 = "User Table";
+                        $queryDescription1 = "Show All User Table Records";
+                        //CALL FUNCTION to generate table
+                        generate_table($conn, $sql1, $queryTitle1, $queryDescription1);
 
                         // Add more queries as needed...
                         ?>
-
-
-                   
-                    
-
                     
                 </div> 
                 <!-- /.container-fluid -->

@@ -34,7 +34,6 @@ CREATE TABLE `book` (
   `AvailableCount` int(11) NOT NULL,
 
   KEY `AuthorID` (`AuthorID`),
-  KEY `AuthorID_2` (`AuthorID`),
 
   CONSTRAINT `book_ibfk_1` FOREIGN KEY (`AuthorID`) REFERENCES `author` (`AuthorID`) ON DELETE CASCADE ON UPDATE CASCADE
 
@@ -53,11 +52,8 @@ CREATE TABLE `user` (
   `PasswordHash` varchar(255) NOT NULL,
   `UserIcon` varchar(255) NOT NULL,
   `UserPermissionLevel` int(11) NOT NULL,
-  `PhoneNumber` varchar(20) NOT NULL,
-  `Email` varchar(32) NOT NULL,
-
-  UNIQUE KEY `PhoneNumber` (`PhoneNumber`),
-  UNIQUE KEY `Email` (`Email`)
+  `PhoneNumber` varchar(20) NOT NULL UNIQUE,
+  `Email` varchar(32) NOT NULL UNIQUE,
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -66,7 +62,7 @@ CREATE TABLE `bookgenre` (
   `BookISBN` varchar(255) NOT NULL,
   `GenreID` int(11) NOT NULL,
 
-  KEY `BookISBN` (`BookISBN`,`GenreID`),
+  KEY `BookISBN` (`BookISBN`),
   KEY `GenreID` (`GenreID`),
 
   CONSTRAINT `bookgenre_ibfk_1` FOREIGN KEY (`GenreID`) REFERENCES `genre` (`GenreID`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -81,7 +77,7 @@ CREATE TABLE `bookmarkedbook` (
   `Page` int(11) NOT NULL,
   `DateCreated` date NOT NULL,
 
-  KEY `BookISBN` (`BookISBN`,`UserID`),
+  KEY `BookISBN` (`BookISBN`),
   KEY `UserID` (`UserID`),
 
   CONSTRAINT `bookmarkedbook_ibfk_1` FOREIGN KEY (`BookISBN`) REFERENCES `book` (`BookISBN`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -101,7 +97,7 @@ CREATE TABLE `borrowhistory` (
   KEY `BookISBN` (`BookISBN`),
 
   CONSTRAINT `borrowhistory_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `user` (`UserID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `borrowhistory_ibfk_2` FOREIGN KEY (`BookISBN`) REFERENCES `book` (`BookISBN`) ON DELETE CASCADE
+  CONSTRAINT `borrowhistory_ibfk_2` FOREIGN KEY (`BookISBN`) REFERENCES `book` (`BookISBN`) ON DELETE CASCADE ON UPDATE CASCADE
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -110,7 +106,7 @@ CREATE TABLE `favourites` (
   `UserID` int(11) NOT NULL,
   `BookISBN` varchar(255) NOT NULL,
 
-  KEY `UserID` (`UserID`,`BookISBN`),
+  KEY `UserID` (`UserID`),
   KEY `BookISBN` (`BookISBN`),
 
   CONSTRAINT `favourites_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `user` (`UserID`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -128,9 +124,9 @@ CREATE TABLE `following` (
   KEY `AuthorID` (`AuthorID`),
   KEY `FollowingUserID` (`FollowingUserID`),
 
-  CONSTRAINT `following_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `user` (`UserID`) ON DELETE CASCADE,
-  CONSTRAINT `following_ibfk_2` FOREIGN KEY (`AuthorID`) REFERENCES `author` (`AuthorID`) ON DELETE CASCADE,
-  CONSTRAINT `following_ibfk_3` FOREIGN KEY (`FollowingUserID`) REFERENCES `user` (`UserID`) ON DELETE CASCADE
+  CONSTRAINT `following_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `user` (`UserID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `following_ibfk_2` FOREIGN KEY (`AuthorID`) REFERENCES `author` (`AuthorID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `following_ibfk_3` FOREIGN KEY (`FollowingUserID`) REFERENCES `user` (`UserID`) ON DELETE CASCADE ON UPDATE CASCADE
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -142,7 +138,7 @@ CREATE TABLE `rating` (
   `Comments` varchar(255) DEFAULT NULL,
   `DateTimeCreated` datetime NOT NULL,
 
-  KEY `UserID` (`UserID`,`BookISBN`),
+  KEY `UserID` (`UserID`),
   KEY `BookISBN` (`BookISBN`),
 
   CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `user` (`UserID`) ON DELETE CASCADE ON UPDATE CASCADE,
