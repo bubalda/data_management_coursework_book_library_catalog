@@ -11,7 +11,7 @@
     $conn = null;
     
     // Check if the database connection is already set in the session
-    if (!isset($_SESSION['db_connection'])) {
+    if (isset($_SESSION['db_connection'])) {
         // Create a NEW Database Connection
         $conn = mysqli_connect($servername, $username, $password, $dbname);
         

@@ -216,7 +216,7 @@
                         </div>
                         
                     </form>
-                    <h4>  Data Management Coursework Title</h4>
+                    <h4>Book Library Catalog</h4>
                     
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -370,7 +370,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Zeeshan Bhatti</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Mah Han Cheng & Leong Ngai Cong</span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
