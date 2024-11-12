@@ -29,53 +29,52 @@
                                 <thead>
                                          <tr>
                                             <th>UserID</th>
-                                            <th>FisrtName</th>
-                                            <th>LastName</th>
+                                            <th>UserName</th>
+                                            <th>UserIcon</th>
+                                            <th>UserPermissionLevel</th>
+                                            <th>PhoneNumber</th>
                                             <th>Email</th>
-                                            <th>BirthDate</th>
-                                            <th>Gender</th>
                                         </tr>
                                         
                                     </thead>
                                     <tbody>
                                 <?php /// Read data
-                                                // Create connection
-                                                 $conn = mysqli_connect($servername, $username, $password, $dbname);
-                                                // Check connection
-                                                if (!$conn) {
-                                                die("Connection failed: " . mysqli_connect_error());
-                                                }
-                                                else {
-                                                    echo "Database Connected successfully";
-                                                }
+                                    // Create connection
+                                        $conn = mysqli_connect($servername, $username, $password, $dbname);
+                                    // Check connection
+                                    if (!$conn) {
+                                    die("Connection failed: " . mysqli_connect_error());
+                                    }
+                                    else {
+                                        echo "Database Connected successfully";
+                                    }
 
-                                            
+                                    $sql = "SELECT * FROM user"; //Query
+                                    //Execute the Query
+                                    $result = mysqli_query($conn, $sql);
+                                    echo "<br> Total Rows: " . mysqli_num_rows($result);
 
-                                                $sql = "SELECT * FROM User"; //Query
-                                                //Execute the Query
-                                                $result = mysqli_query($conn, $sql);
-                                                echo "<br> Total Rows: " . mysqli_num_rows($result);
+                                    if (mysqli_num_rows($result) > 0) {
+                                    // output data of each row
+                                    while($row = mysqli_fetch_assoc($result)) {
+                                        
+                                        echo "<tr>";
+                                        echo "<td>".$row["UserID"]  ."</td>";
+                                        echo    "<td>".$row['UserName']. "</td>";
+                                        echo   "<td>".$row['UserIcon']. "</td>";
+                                        echo   "<td>".$row['UserPermissionLevel']. "</td>";
+                                        echo   "<td>".$row['PhoneNumber']. "</td>";
+                                        echo   "<td>".$row['Email']. "</td>";
+                                        echo "</tr>";
+                                        //echo $row["count(*)"];
+                                    }
+                                    } else {
+                                    echo "0 results";
+                                    }
 
-                                                if (mysqli_num_rows($result) > 0) {
-                                                // output data of each row
-                                                while($row = mysqli_fetch_assoc($result)) {
-                                                    
-                                                    echo "<tr>";
-                                                    echo "<td>".$row["UserID"]  ."</td>";
-                                                    echo    "<td>".$row['FirstName']. "</td>";
-                                                    echo   "<td>".$row['LastName']. "</td>";
-                                                    echo   "<td>".$row['Email']. "</td>";
-                                                    echo   "<td>".$row['BirthDate']. "</td>";
-                                                    echo   "<td>".$row['Gender']. "</td>";
-                                                    echo "</tr>";
-                                                    //echo $row["count(*)"];
-                                                }
-                                                } else {
-                                                echo "0 results";
-                                                }
+                                    mysqli_close($conn);
                                  ?>
-                                    
-                                                        
+                     
                                     </tbody>
                                 </table>
                             </div>

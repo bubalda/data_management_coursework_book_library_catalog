@@ -19,6 +19,13 @@
                     
                         <?php
                         //***************************** */
+                        // Create connection
+                        $conn = mysqli_connect($servername, $username, $password, $dbname);
+                        // Check connection
+                        if (!$conn) {
+                        die("Connection failed: " . mysqli_connect_error());
+                        }
+
                         // Example Query 1
                         $sql1 = "SELECT * FROM author"; //Query
                         $queryTitle1 = "Author Table";
@@ -164,4 +171,6 @@ function generate_table($conn, $sql, $queryTitle, $queryDescription) {
             </div>
         </div>';
 }
+
+mysqli_close($conn);
 ?>

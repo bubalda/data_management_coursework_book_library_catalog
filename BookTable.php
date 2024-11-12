@@ -1,9 +1,9 @@
 <?php
     include 'db_connect.php'; // Includes the connection and starts/resumes the session
-    //session_start(); // Start the session at the beginning of your script
+    // session_start(); // Start the session at the beginning of your script
  
     //include the Sidebar Menu and Header
-    include 'sideBarMenu.php';
+  include 'sideBarMenu.php';
 ?>
 
 
@@ -12,8 +12,8 @@
                    
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">USer Posts Tables</h1>
-                    <p class="mb-4">Query: Show All User Posts Table Records.
+                    <h1 class="h3 mb-2 text-gray-800">Book Table</h1>
+                    <p class="mb-4">Query: Show All Books Table Records.
                         </p>
 
                     <!-- COPY FROM HERE -->
@@ -21,36 +21,57 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">User Posts Table</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Book Table</h6>
                         </div>
                        <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                         <tr>
-                                            <th>UserPostID</th>
-                                            <th>UserID</th>
-                                            <th>PostID</th>
-                                           
+                                            <th>BookISBN</th>
+                                            <th>BookName</th>
+                                            <th>CoverPicture</th>
+                                            <th>PublishedYear</th>
+                                            <th>AuthorID</th>
+                                            <th>PageCount</th>
+                                            <th>Description</th>
+                                            <th>ReadingLink</th>
+                                            <th>AvailableCount</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                 <?php /// Read data
-                                    $sql = "SELECT * FROM User_Post"; //Query
+                                     $conn = mysqli_connect($servername, $username, $password, $dbname);
+                                    // Check connection
+                                    if (!$conn) {
+                                        die("Connection failed: " . mysqli_connect_error());
+                                    }
+                                    else {
+                                        echo "Database Connected successfully";
+                                    }
+
+                                    // CHANGE THE TABLE NAME HERE
+                                    $sql = "SELECT * FROM book"; //Query
                                     //Execute the Query
                                     $result = mysqli_query($conn, $sql);
                                     echo "<br> Total Rows: " . mysqli_num_rows($result);
 
                                     if (mysqli_num_rows($result) > 0) {
+                                        
                                     // output data of each row
                                     while($row = mysqli_fetch_assoc($result)) {
-                                       
+                                        
                                         echo "<tr>";
-                                                    echo "<td>".$row["UserPostID"]  ."</td>";
-                                                    echo "<td>".$row["UserID"]  ."</td>";
-                                                    echo    "<td>".$row['PostID']. "</td>";
-                                                   
-                                                    echo "</tr>";
+                                        echo "<td>".$row["BookISBN"]  ."</td>";
+                                        echo "<td>".$row["BookName"]  ."</td>";
+                                        echo "<td>".$row["CoverPicture"]  ."</td>";
+                                        echo "<td>".$row["PublishedYear"]  ."</td>";
+                                        echo "<td>".$row["AuthorID"]  ."</td>";
+                                        echo "<td>".$row["PageCount"]  ."</td>";
+                                        echo "<td>".$row["Description"]  ."</td>";
+                                        echo "<td>".$row["ReadingLink"]  ."</td>";
+                                        echo "<td>".$row["AvailableCount"]  ."</td>";
+                                        echo "</tr>";
                                        
                                     }
                                     } else {

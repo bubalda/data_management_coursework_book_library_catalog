@@ -18,35 +18,264 @@
                         </p>
                     
                         <?php
+                        // Create connection
+                        $conn = mysqli_connect($servername, $username, $password, $dbname);
+                        // Check connection
+                        if (!$conn) {
+                            die("Connection failed: " . mysqli_connect_error());
+                        }
+                        else {
+                            echo "Database Connected successfully";
+                        }
                         //***************************** */
                         // Example Query 1
-                        $sql1 = "SELECT u.UserID, u.FirstName, p.NumPosts 
-                                FROM User u 
-                                JOIN (SELECT UserID, COUNT(*) AS NumPosts FROM Posts GROUP BY UserID HAVING COUNT(*) >= 2) p 
-                                ON u.UserID = p.UserID";
-                        $queryTitle1 = "Query-1";
-                        $queryDescription1 = "Retrieve users with more than 2 posts";
+                        $sql = "SELECT b.BookName, a.AuthorName, COUNT(f.BookISBN) AS FavoriteCount
+                        FROM favourites f
+                        INNER JOIN book b ON f.BookISBN = b.BookISBN
+                        JOIN author a ON b.AuthorID = a.AuthorID
+                        GROUP BY f.BookISBN
+                        ORDER BY FavoriteCount DESC
+                        LIMIT 5;";
+                        $queryTitle = "Query-1";
+                        $queryDescription = "Retrieve the Top 5 Most Favourited Books And Their Authors";
                         //CALL FUNCTION to generate table
-                        generate_table($conn, $sql1, $queryTitle1, $queryDescription1);
-
+                        generate_table($conn, $sql, $queryTitle, $queryDescription);
+                        
                         //***************************** */
                         // Example Query 2
-                        $sql2 = "SELECT * FROM Posts WHERE HashtagID IN (SELECT HashtagID FROM Hashtag WHERE HashtagName LIKE '%#exam%')";
-                        $queryTitle2 = "Query-2";
-                        $queryDescription2 = "Retrieve posts with specific hashtags";
-
+                        $sql = "SELECT b.BookName, r.Stars
+                        FROM rating r
+                        LEFT JOIN book b ON r.BookISBN = b.BookISBN
+                        WHERE r.Stars >= 4";
+                        $queryTitle = "Query-2";
+                        $queryDescription = "Retrieve Books With A Minimum of 4 Stars";
                         //CALL FUNCTION to generate table
-                        generate_table($conn, $sql2, $queryTitle2, $queryDescription2);
+                        generate_table($conn, $sql, $queryTitle, $queryDescription);
 
                         //***************************** */
                         // Example Query 3
-                        $sql2 = "SELECT * FROM Posts WHERE HashtagID IN (SELECT HashtagID FROM Hashtag WHERE HashtagName LIKE '%#exam%')";
-                        $queryTitle2 = "Query-3";
-                        $queryDescription2 = "Retrieve posts with specific hashtags";
-
+                        $sql = "SELECT b.BookName, COUNT(bh.BorrowID) AS BorrowCount
+                        FROM book b
+                        INNER JOIN borrowhistory bh ON b.BookISBN = bh.BookISBN
+                        GROUP BY b.BookISBN
+                        ORDER BY BorrowCount DESC;";
+                        $queryTitle = "Query-3";
+                        $queryDescription = "Count How Many Times Each Book Has Been Borrowed";
                         //CALL FUNCTION to generate table
-                        generate_table($conn, $sql2, $queryTitle2, $queryDescription2);
-
+                        generate_table($conn, $sql, $queryTitle, $queryDescription);
+                        
+                        //***************************** */
+                        // Example Query 4
+                        $sql = "SELECT u.UserName, b.BookName, bh.BorrowDate
+                        FROM borrowhistory bh
+                        JOIN user u ON bh.UserID = u.UserID
+                        JOIN book b ON bh.BookISBN = b.BookISBN
+                        WHERE bh.ReturnDate IS NULL;";
+                        $queryTitle = "Query-4";
+                        $queryDescription = "Find All Users Who Have Not Returned A Borrowed Book";
+                        //CALL FUNCTION to generate table
+                        generate_table($conn, $sql, $queryTitle, $queryDescription);
+                        
+                        //***************************** */
+                        // Example Query 5
+                        $sql = "SELECT u.UserName, b.BookName, bh.BorrowDate
+                        FROM borrowhistory bh
+                        JOIN user u ON bh.UserID = u.UserID
+                        JOIN book b ON bh.BookISBN = b.BookISBN
+                        WHERE bh.ReturnDate IS NOT NULL;";
+                        $queryTitle = "Query-5";
+                        $queryDescription = "Find All Users Who Have Returned A Borrowed Book";
+                        //CALL FUNCTION to generate table
+                        generate_table($conn, $sql, $queryTitle, $queryDescription);
+                        
+                        //***************************** */
+                        // Example Query 6
+                        $sql = "SELECT BookName, AvailableCount
+                        FROM book
+                        WHERE AvailableCount < 3;";
+                        $queryTitle = "Query-6";
+                        $queryDescription = "Find All Books With Less Than 3 Available Copies";
+                        //CALL FUNCTION to generate table
+                        generate_table($conn, $sql, $queryTitle, $queryDescription);
+                        
+                        //***************************** */
+                        // Example Query 7
+                        $sql = "SELECT u.UserName, b.BookName, r.Stars, r.Comments
+                        FROM rating r
+                        JOIN user u ON r.UserID = u.UserID
+                        JOIN book b ON r.BookISBN = b.BookISBN
+                        WHERE r.Comments IS NOT NULL;";
+                        $queryTitle = "Query-7";
+                        $queryDescription = "Find All Ratings Where Users Have Left a Comment";
+                        //CALL FUNCTION to generate table
+                        generate_table($conn, $sql, $queryTitle, $queryDescription);
+                        
+                        //***************************** */
+                        // Example Query 8
+                        $sql = "SELECT u.UserName, b.BookName, r.Stars
+                        FROM rating r
+                        JOIN user u ON r.UserID = u.UserID
+                        JOIN book b ON r.BookISBN = b.BookISBN
+                        WHERE r.Comments IS NULL;";
+                        $queryTitle = "Query-8";
+                        $queryDescription = "Find All Ratings Where Users Have Not Left a Comment";
+                        //CALL FUNCTION to generate table
+                        generate_table($conn, $sql, $queryTitle, $queryDescription);
+                        
+                        //***************************** */
+                        // Example Query 9
+                        $sql = "SELECT u.UserName, COUNT(f.FavouritesID) AS FavoriteCount
+                        FROM user u
+                        RIGHT JOIN favourites f ON u.UserID = f.UserID
+                        GROUP BY u.UserID
+                        HAVING FavoriteCount > 2;
+                        ";
+                        $queryTitle = "Query-9";
+                        $queryDescription = "Find Users Who Have Favorited More Than 2 Books";
+                        //CALL FUNCTION to generate table
+                        generate_table($conn, $sql, $queryTitle, $queryDescription);
+                        
+                        //***************************** */
+                        // Example Query 10
+                        $sql = "SELECT u.UserID, AVG(bh.LateFees) AS AvgLateFees
+                        FROM user u
+                        RIGHT JOIN borrowhistory bh ON bh.UserID = u.UserID
+                        WHERE bh.LateFees IS NOT NULL
+                        GROUP BY bh.UserID;";
+                        $queryTitle = "Query-10";
+                        $queryDescription = "Find Average Late Fees From All Users With Late Returns";
+                        //CALL FUNCTION to generate table
+                        generate_table($conn, $sql, $queryTitle, $queryDescription);
+                        
+                        //***************************** */
+                        // Example Query 11
+                        $sql = "SELECT b.BookISBN, COUNT(r.RatingID) AS numRatings
+                        FROM book b
+                        FULL OUTER JOIN rating r ON r.BookISBN = b.BookISBN
+                        GROUP BY b.BookISBN
+                        ORDER BY numRatings DESC;";
+                        $queryTitle = "Query-11";
+                        $queryDescription = "Count the Total Number of Times Each Book Has Been Rated";
+                        //CALL FUNCTION to generate table
+                        generate_table($conn, $sql, $queryTitle, $queryDescription);
+                        
+                        //***************************** */
+                        // Example Query 12
+                        $sql = "SELECT u.UserName, b.BookName, bb.Page, bb.DateCreated
+                        FROM User u
+                        RIGHT JOIN BookmarkedBook bb ON u.UserID = bb.UserID
+                        INNER JOIN book b ON b.BookISBN = bb.BookISBN
+                        WHERE bb.DateCreated = (SELECT MAX(DateCreated) FROM BookmarkedBook WHERE UserID = u.UserID)
+                        ORDER BY u.UserName;";
+                        $queryTitle = "Query-12";
+                        $queryDescription = "Find the Most Recent Bookmarks by Each User";
+                        //CALL FUNCTION to generate table
+                        generate_table($conn, $sql, $queryTitle, $queryDescription);
+                        
+                        //***************************** */
+                        // Example Query 13
+                        $sql = "";
+                        $queryTitle = "Query-13";
+                        $queryDescription = "";
+                        //CALL FUNCTION to generate table
+                        generate_table($conn, $sql, $queryTitle, $queryDescription);
+                        
+                        //***************************** */
+                        // Example Query 3
+                        $sql = "SELECT b.BookName, COUNT(bh.BorrowID) AS BorrowCount
+                        FROM book b
+                        JOIN borrowhistory bh ON b.BookISBN = bh.BookISBN
+                        GROUP BY b.BookISBN
+                        ORDER BY BorrowCount DESC;";
+                        $queryTitle = "Query-3";
+                        $queryDescription = "Count How Many Times Each Book Has Been Borrowed";
+                        //CALL FUNCTION to generate table
+                        generate_table($conn, $sql, $queryTitle, $queryDescription);
+                        
+                        //***************************** */
+                        // Example Query 3
+                        $sql = "SELECT b.BookName, COUNT(bh.BorrowID) AS BorrowCount
+                        FROM book b
+                        JOIN borrowhistory bh ON b.BookISBN = bh.BookISBN
+                        GROUP BY b.BookISBN
+                        ORDER BY BorrowCount DESC;";
+                        $queryTitle = "Query-3";
+                        $queryDescription = "Count How Many Times Each Book Has Been Borrowed";
+                        //CALL FUNCTION to generate table
+                        generate_table($conn, $sql, $queryTitle, $queryDescription);
+                        
+                        //***************************** */
+                        // Example Query 3
+                        $sql = "SELECT b.BookName, COUNT(bh.BorrowID) AS BorrowCount
+                        FROM book b
+                        JOIN borrowhistory bh ON b.BookISBN = bh.BookISBN
+                        GROUP BY b.BookISBN
+                        ORDER BY BorrowCount DESC;";
+                        $queryTitle = "Query-3";
+                        $queryDescription = "Count How Many Times Each Book Has Been Borrowed";
+                        //CALL FUNCTION to generate table
+                        generate_table($conn, $sql, $queryTitle, $queryDescription);
+                        
+                        //***************************** */
+                        // Example Query 3
+                        $sql = "SELECT b.BookName, COUNT(bh.BorrowID) AS BorrowCount
+                        FROM book b
+                        JOIN borrowhistory bh ON b.BookISBN = bh.BookISBN
+                        GROUP BY b.BookISBN
+                        ORDER BY BorrowCount DESC;";
+                        $queryTitle = "Query-3";
+                        $queryDescription = "Count How Many Times Each Book Has Been Borrowed";
+                        //CALL FUNCTION to generate table
+                        generate_table($conn, $sql, $queryTitle, $queryDescription);
+                        
+                        //***************************** */
+                        // Example Query 3
+                        $sql = "SELECT b.BookName, COUNT(bh.BorrowID) AS BorrowCount
+                        FROM book b
+                        JOIN borrowhistory bh ON b.BookISBN = bh.BookISBN
+                        GROUP BY b.BookISBN
+                        ORDER BY BorrowCount DESC;";
+                        $queryTitle = "Query-3";
+                        $queryDescription = "Count How Many Times Each Book Has Been Borrowed";
+                        //CALL FUNCTION to generate table
+                        generate_table($conn, $sql, $queryTitle, $queryDescription);
+                        
+                        //***************************** */
+                        // Example Query 3
+                        $sql = "SELECT b.BookName, COUNT(bh.BorrowID) AS BorrowCount
+                        FROM book b
+                        JOIN borrowhistory bh ON b.BookISBN = bh.BookISBN
+                        GROUP BY b.BookISBN
+                        ORDER BY BorrowCount DESC;";
+                        $queryTitle = "Query-3";
+                        $queryDescription = "Count How Many Times Each Book Has Been Borrowed";
+                        //CALL FUNCTION to generate table
+                        generate_table($conn, $sql, $queryTitle, $queryDescription);
+                        
+                        //***************************** */
+                        // Example Query 3
+                        $sql = "SELECT b.BookName, COUNT(bh.BorrowID) AS BorrowCount
+                        FROM book b
+                        JOIN borrowhistory bh ON b.BookISBN = bh.BookISBN
+                        GROUP BY b.BookISBN
+                        ORDER BY BorrowCount DESC;";
+                        $queryTitle = "Query-3";
+                        $queryDescription = "Count How Many Times Each Book Has Been Borrowed";
+                        //CALL FUNCTION to generate table
+                        generate_table($conn, $sql, $queryTitle, $queryDescription);
+                        
+                        //***************************** */
+                        // Example Query 3
+                        $sql = "SELECT b.BookName, COUNT(bh.BorrowID) AS BorrowCount
+                        FROM book b
+                        JOIN borrowhistory bh ON b.BookISBN = bh.BookISBN
+                        GROUP BY b.BookISBN
+                        ORDER BY BorrowCount DESC;";
+                        $queryTitle = "Query-3";
+                        $queryDescription = "Count How Many Times Each Book Has Been Borrowed";
+                        //CALL FUNCTION to generate table
+                        generate_table($conn, $sql, $queryTitle, $queryDescription);
+                        
                         // Add more queries as needed...
                         ?>
 

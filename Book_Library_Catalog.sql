@@ -42,14 +42,14 @@ CREATE TABLE `book` (
 CREATE TABLE `genre` (
   `GenreID` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
   `GenreName` varchar(255) NOT NULL,
-  `Decription` varchar(255) DEFAULT NULL
+  `Description` varchar(255) DEFAULT NULL
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `user` (
   `UserID` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
   `UserName` varchar(255) NOT NULL,
-  `PasswordHash` varchar(255) NOT NULL,
+  `PasswordHash` char(64) NOT NULL,
   `UserIcon` varchar(255) NOT NULL,
   `UserPermissionLevel` int(11) NOT NULL,
   `PhoneNumber` varchar(20) NOT NULL UNIQUE,
@@ -306,7 +306,7 @@ INSERT INTO `favourites` (`FavouritesID`, `UserID`, `BookISBN`) VALUES
 (1, 3, '1408855682'),
 (2, 13, '0764570684'),
 (3, 8, '9781495969058'),
-(4, 13, '0764570684'),
+(4, 7, '9780452262935'),
 (5, 9, '9781495969058');
 
 INSERT INTO `following` (`FollowingID`, `UserID`, `AuthorID`, `FollowingUserID`) VALUES

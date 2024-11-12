@@ -95,7 +95,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Total Posts </div>
+                                                Total Books </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                             
                                             <?php /// Read PHP data
@@ -106,7 +106,7 @@
                                                 die("Connection failed: " . mysqli_connect_error());
                                                 }
 
-                                                $sql = "SELECT count(*) FROM author";
+                                                $sql = "SELECT count(*) FROM book";
                                                 $result = mysqli_query($conn, $sql);
 
                                                 if (mysqli_num_rows($result) > 0) {
@@ -138,7 +138,7 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Hastags
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Authors
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
@@ -152,7 +152,7 @@
                                                 die("Connection failed: " . mysqli_connect_error());
                                                 }
 
-                                                $sql = "SELECT count(*) FROM book";
+                                                $sql = "SELECT count(*) FROM author";
                                                 $result = mysqli_query($conn, $sql);
 
                                                 if (mysqli_num_rows($result) > 0) {

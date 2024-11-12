@@ -1,9 +1,9 @@
 <?php
     include 'db_connect.php'; // Includes the connection and starts/resumes the session
-    // session_start(); // Start the session at the beginning of your script
+    //session_start(); // Start the session at the beginning of your script
  
     //include the Sidebar Menu and Header
-  include 'sideBarMenu.php';
+    include 'sideBarMenu.php';
 ?>
 
 
@@ -12,8 +12,8 @@
                    
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">HashTag Tables</h1>
-                    <p class="mb-4">Query: Show All Hashtag Table Records.
+                    <h1 class="h3 mb-2 text-gray-800">Rating Table</h1>
+                    <p class="mb-4">Query: Show All Ratings Table Records.
                         </p>
 
                     <!-- COPY FROM HERE -->
@@ -21,36 +21,48 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Hashtag Table</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Ratings Table</h6>
                         </div>
                        <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                         <tr>
-                                            <th>HashtagID</th>
-                                            <th>Hashtag Name</th>
-                                            
+                                            <th>UserID</th>
+                                            <th>BookISBN</th>
+                                            <th>Stars</th>
+                                            <th>Comments</th>
+                                            <th>DateTimeCreated</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                 <?php /// Read data
-                                // CHANGE THE TABLE NAME HERE
-                                    $sql = "SELECT * FROM Hashtag"; //Query
+                                    // Create connection
+                                     $conn = mysqli_connect($servername, $username, $password, $dbname);
+                                    // Check connection
+                                    if (!$conn) {
+                                    die("Connection failed: " . mysqli_connect_error());
+                                    }
+                                    else {
+                                        echo "Database Connected successfully";
+                                    }
+
+                                    $sql = "SELECT * FROM rating"; //Query
                                     //Execute the Query
                                     $result = mysqli_query($conn, $sql);
                                     echo "<br> Total Rows: " . mysqli_num_rows($result);
 
                                     if (mysqli_num_rows($result) > 0) {
-                                        
                                     // output data of each row
                                     while($row = mysqli_fetch_assoc($result)) {
                                         
                                         echo "<tr>";
-                                        echo "<td>".$row["HashtagID"]  ."</td>";
-                                        echo "<td>".$row["HashtagName"]  ."</td>";
+                                        echo "<td>".$row["UserID"]  ."</td>";
+                                        echo "<td>".$row["BookISBN"]  ."</td>";
+                                        echo "<td>".$row['Stars']. "</td>";
+                                        echo "<td>".$row["Comments"]  ."</td>";
+                                        echo "<td>".$row['DateTimeCreated']. "</td>";
                                         echo "</tr>";
-                                       
                                     }
                                     } else {
                                     echo "0 results";
