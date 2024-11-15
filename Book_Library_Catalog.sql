@@ -339,3 +339,243 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+/*
+2. Main Genre of Book Written by All Authors
+SELECT a.AuthorName, g.GenreName, COUNT(bg.GenreID) AS GenreCount
+FROM author a
+JOIN book b ON a.AuthorID = b.AuthorID
+JOIN bookgenre bg ON b.BookISBN = bg.BookISBN
+JOIN genre g ON bg.GenreID = g.GenreID
+GROUP BY a.AuthorID, g.GenreID
+ORDER BY a.AuthorID, GenreCount DESC;
+
+3. All Late Returns Book Name of a User
+SELECT b.BookName
+FROM borrowhistory bh
+JOIN book b ON bh.BookISBN = b.BookISBN
+WHERE bh.UserID = [UserID] AND bh.ReturnDate > bh.BorrowDate;
+
+4. Most Popular Book Genre Published Between Year 2000 - 2010
+SELECT g.GenreName, COUNT(b.BookISBN) AS BookCount
+FROM book b
+JOIN bookgenre bg ON b.BookISBN = bg.BookISBN
+JOIN genre g ON bg.GenreID = g.GenreID
+WHERE b.PublishedYear BETWEEN 2000 AND 2010
+GROUP BY g.GenreID
+ORDER BY BookCount DESC
+LIMIT 1;
+
+6. Top 5 Most Favorited Books and Their Authors
+SELECT b.BookName, a.AuthorName, COUNT(f.BookISBN) AS FavoriteCount
+FROM favourites f
+JOIN book b ON f.BookISBN = b.BookISBN
+JOIN author a ON b.AuthorID = a.AuthorID
+GROUP BY f.BookISBN
+ORDER BY FavoriteCount DESC
+LIMIT 5;
+
+7. Most Active User in This Month (Sum of Rating Count)
+SELECT u.UserName, COUNT(r.RatingID) AS RatingCount
+FROM rating r
+JOIN user u ON r.UserID = u.UserID
+WHERE MONTH(r.DateTimeCreated) = MONTH(CURDATE()) AND YEAR(r.DateTimeCreated) = YEAR(CURDATE())
+GROUP BY r.UserID
+ORDER BY RatingCount DESC
+LIMIT 1;
+
+8. The Critic (User Who Gave the Average Least Stars and More Than 5 Ratings)
+SELECT u.UserName, AVG(r.Stars) AS AverageStars
+FROM rating r
+JOIN user u ON r.UserID = u.UserID
+GROUP BY r.UserID
+HAVING COUNT(r.RatingID) > 5
+ORDER BY AverageStars ASC
+LIMIT 1;
+
+9. The Rarest Book Genre (Genre with Least Books but Not Zero)
+SELECT g.GenreName, COUNT(bg.BookISBN) AS BookCount
+FROM genre g
+LEFT JOIN bookgenre bg ON g.GenreID = bg.GenreID
+GROUP BY g.GenreID
+HAVING BookCount > 0
+ORDER BY BookCount ASC
+LIMIT 1;
+
+10. Most Controversial Book (Max Stars - Min Stars Difference is Greatest)
+SELECT b.BookName, (MAX(r.Stars) - MIN(r.Stars)) AS RatingDifference
+FROM rating r
+JOIN book b ON r.BookISBN = b.BookISBN
+GROUP BY r.BookISBN
+ORDER BY RatingDifference DESC
+LIMIT 1;
+
+11. Find All Books Where Description Has the Word "story"
+SELECT BookName
+FROM book
+WHERE Description LIKE '%story%';
+
+12. Top 3 Oldest Books
+SELECT BookName, PublishedYear
+FROM book
+ORDER BY PublishedYear ASC
+LIMIT 3;
+
+13. Number of Comments of All Users in Last Month
+SELECT u.UserName, COUNT(r.Comments) AS CommentCount
+FROM rating r
+JOIN user u ON r.UserID = u.UserID
+WHERE r.Comments IS NOT NULL AND MONTH(r.DateTimeCreated) = MONTH(CURDATE() - INTERVAL 1 MONTH)
+  AND YEAR(r.DateTimeCreated) = YEAR(CURDATE() - INTERVAL 1 MONTH)
+GROUP BY u.UserID;
+
+14. The Author Who Has Written the Most Number of Books
+SELECT a.AuthorName, COUNT(b.BookISBN) AS BookCount
+FROM author a
+JOIN book b ON a.AuthorID = b.AuthorID
+GROUP BY a.AuthorID
+ORDER BY BookCount DESC
+LIMIT 1;
+
+15. The Bookmarked Page of the Most Followed User
+SELECT bb.Page, b.BookName
+FROM following f
+JOIN bookmarkedbook bb ON f.FollowingUserID = bb.UserID
+JOIN book b ON bb.BookISBN = b.BookISBN
+GROUP BY f.FollowingUserID
+ORDER BY COUNT(f.FollowingUserID) DESC
+LIMIT 1;
+
+17. Find the Most Recently Published Book by Each Author
+SELECT a.AuthorName, b.BookName, b.PublishedYear
+FROM author a
+JOIN book b ON a.AuthorID = b.AuthorID
+WHERE b.PublishedYear = (
+    SELECT MAX(PublishedYear)
+    FROM book
+    WHERE AuthorID = a.AuthorID
+)
+ORDER BY a.AuthorName;
+
+18. List All Books Published After 2015 That Have More Than 300 Pages
+SELECT BookName, PublishedYear, PageCount
+FROM book
+WHERE PublishedYear > 2015 AND PageCount > 300;
+
+19. Count the Number of Times Each Book Has Been Borrowed
+SELECT b.BookName, COUNT(bh.BorrowID) AS BorrowCount
+FROM book b
+JOIN borrowhistory bh ON b.BookISBN = bh.BookISBN
+GROUP BY b.BookISBN
+ORDER BY BorrowCount DESC;
+
+21. List all Books with a Rating of 4 Stars or more and Display the Comments
+SELECT b.BookName, r.Comments, r.Stars
+FROM rating r
+JOIN book b ON r.BookISBN = b.BookISBN
+WHERE r.Stars >= 4 AND r.Comments IS NOT NULL;
+
+22. Find the Users Who Have Borrowed a Book But Never Returned It
+SELECT u.UserName, b.BookName, bh.BorrowDate
+FROM borrowhistory bh
+JOIN user u ON bh.UserID = u.UserID
+JOIN book b ON bh.BookISBN = b.BookISBN
+WHERE bh.ReturnDate IS NULL;
+
+23. List All Books with Less than 5 Copies Available
+SELECT BookName, AvailableCount
+FROM book
+WHERE AvailableCount < 5;
+
+24. Find the Average Number of Pages for Books in Each Genre
+SELECT g.GenreName, AVG(b.PageCount) AS AveragePageCount
+FROM genre g
+JOIN bookgenre bg ON g.GenreID = bg.GenreID
+JOIN book b ON bg.BookISBN = b.BookISBN
+GROUP BY g.GenreID;
+
+25. List All Users Who Have Rated a Book Without Leaving a Comment
+SELECT u.UserName, b.BookName, r.Stars
+FROM rating r
+JOIN user u ON r.UserID = u.UserID
+JOIN book b ON r.BookISBN = b.BookISBN
+WHERE r.Comments IS NULL;
+
+26. Find the Total Number of Pages Across All Books by a Specific Author
+SELECT a.AuthorName, SUM(b.PageCount) AS TotalPages
+FROM author a
+JOIN book b ON a.AuthorID = b.AuthorID
+WHERE a.AuthorID = [AuthorID]
+GROUP BY a.AuthorID;
+
+28. Find the Most Recent Bookmark for Each User
+SELECT u.UserName, b.BookName, bb.Page, bb.DateCreated
+FROM user u
+JOIN bookmarkedbook bb ON u.UserID = bb.UserID
+JOIN book b ON bb.BookISBN = b.BookISBN
+WHERE bb.DateCreated = (
+    SELECT MAX(DateCreated)
+    FROM bookmarkedbook
+    WHERE UserID = u.UserID
+)
+ORDER BY u.UserName;
+
+31. Count the Total Number of Times Each Book Has Been Rated
+SELECT b.BookName, COUNT(r.RatingID) AS RatingCount
+FROM book b
+JOIN rating r ON b.BookISBN = r.BookISBN
+GROUP BY b.BookISBN
+ORDER BY RatingCount DESC;
+*/
+
+/*
+
+5. Most Bookmarked Page (Book Name and Page Number)
+SELECT b.BookName, bb.Page, COUNT(bb.Page) AS BookmarkCount
+FROM bookmarkedbook bb
+JOIN book b ON bb.BookISBN = b.BookISBN
+GROUP BY bb.BookISBN, bb.Page
+ORDER BY BookmarkCount DESC
+LIMIT 1;
+
+16. Top 5 Least Available Books and Their Difference with Average Book Count
+SELECT b.BookName, b.AvailableCount, (b.AvailableCount - (SELECT AVG(AvailableCount) FROM book)) AS CountDifference
+FROM book b
+ORDER BY b.AvailableCount ASC
+LIMIT 5;
+
+20. Find All Users Who Have Favorited More Than 5 Books
+SELECT u.UserName, COUNT(f.FavouritesID) AS FavoriteCount
+FROM user u
+JOIN favourites f ON u.UserID = f.UserID
+GROUP BY u.UserID
+HAVING FavoriteCount > 5;
+
+30. Find All Users Who Have Bookmarked More Than One Page in a Single Book
+SELECT u.UserName, b.BookName, COUNT(bb.Page) AS BookmarkCount
+FROM bookmarkedbook bb
+JOIN user u ON bb.UserID = u.UserID
+JOIN book b ON bb.BookISBN = b.BookISBN
+GROUP BY bb.UserID, bb.BookISBN
+HAVING BookmarkCount > 1;
+
+32. Find All Authors Who Are Followed by at Least 2 Different Users
+SELECT a.AuthorName, COUNT(f.FollowingID) AS FollowerCount
+FROM author a
+JOIN following f ON a.AuthorID = f.AuthorID
+GROUP BY a.AuthorID
+HAVING FollowerCount >= 2;
+
+33. Find All Users Who Have the Same Email Domain
+SELECT Email, COUNT(UserID) AS UserCount
+FROM user
+GROUP BY SUBSTRING_INDEX(Email, '@', -1)
+HAVING UserCount > 1;
+
+35. Find the Average Late Fees for Each User with Late Returns
+SELECT u.UserName, AVG(bh.LateFees) AS AverageLateFees
+FROM borrowhistory bh
+JOIN user u ON bh.UserID = u.UserID
+WHERE bh.LateFees IS NOT NULL
+GROUP BY bh.UserID;
+*/
