@@ -208,25 +208,25 @@ INSERT INTO `genre` (`GenreID`, `GenreName`, `Decription`) VALUES
 (20, 'Graphic Novels', 'Novels in comic-strip format.');
 
 INSERT INTO `user` (`UserID`, `UserName`, `PasswordHash`, `UserIcon`, `UserPermissionLevel`, `PhoneNumber`, `Email`) VALUES
-(1, 'John Doe', '94890005F3B2117A353DA7260259531878CAE4F541BF59998511887D1F0221A5', 'https://librarycatalogue.com/images/john-doe-profile1', 1, '0123456789', 'johndoe@example.com'),
-(2, 'Jane Doe', 'ED37D99B1445238AF3386F81A77A2CAF3FFFC0CD610BE39B4F3BA53943DC66BF', 'https://librarycatalogue.com/images/john-doe-profilepic', 1, '0124329765', 'janedoe@example.com'),
-(3, 'Alice Lee', '35B6AEF9BC9577CA8A7DC11F420040355C3DA63577503925B224D4B494E77D4B', 'https://librarycatalogue.com/images/alice-lee-pic1', 1, '0164571259', 'alice.lee@example.com'),
+(1, 'John Doe', '94890005F3B2117A353DA7260259531878CAE4F541BF59998511887D1F0221A5', 'https://librarycatalogue.com/images/john-doe-profile1', 2, '0123456789', 'johndoe@example.com'),
+(2, 'Jane Doe', 'ED37D99B1445238AF3386F81A77A2CAF3FFFC0CD610BE39B4F3BA53943DC66BF', 'https://librarycatalogue.com/images/john-doe-profilepic', 1, '0124329765', 'janedoe@yahoo.com'),
+(3, 'Alice Lee', '35B6AEF9BC9577CA8A7DC11F420040355C3DA63577503925B224D4B494E77D4B', 'https://librarycatalogue.com/images/alice-lee-pic1', 2, '0164571259', 'alice.lee@yahoo.com'),
 (4, 'Bob Tan', 'E979AF46CDCE9C0FA1BA53710418C68D718119EBA293D4798CAC774236541D1D', 'https://librarycatalogue.com/images/bob-tan-s-profile', 1, '0247853169', 'bobtan123@example.com'),
-(5, 'Jerry Liu', 'B3D313DCC3703BE02CB42A7D7A0ED6C75E535D5FE62684FBBAE983378F087DBC', 'https://librarycatalogue.com/images/liu-jerry-face1', 1, '0351247512', 'jerryliu@example.com'),
+(5, 'Jerry Liu', 'B3D313DCC3703BE02CB42A7D7A0ED6C75E535D5FE62684FBBAE983378F087DBC', 'https://librarycatalogue.com/images/liu-jerry-face1', 2, '0351247512', 'jerryliu@yahoo.com'),
 (6, 'Rohan Kumar', 'F5DA08800D1BF97565BE7F8F70ECFC00661C1EC7E872CEDDEBF158B2871D87EE', 'https://librarycatalogue.com/images/rohan-profile1', 1, '0351246589', 'rohankumar@example.com'),
-(7, 'Amir Patel', 'F38EC101896667AF30A9DCE11B0D7774DD13BAEEEC3E1831CB1085D6E96E8BB2', 'https://librarycatalogue.com/images/amir-patel-picture1', 1, '0124573652', 'amir.patel@example.com'),
+(7, 'Amir Patel', 'F38EC101896667AF30A9DCE11B0D7774DD13BAEEEC3E1831CB1085D6E96E8BB2', 'https://librarycatalogue.com/images/amir-patel-picture1', 2, '0124573652', 'amir.patel@yahoo.com'),
 (8, 'Sergey Petrov', '79512615CB65FB11A4A1ACC0CB06EAB77C4286C6938F19A8138286E9EE563B71', 'https://librarycatalogue.com/images/sergei-pictures', 1, '0354216834', 'sergei37petrov@example.com'),
-(9, 'Anastasia Shevchenko', '9EB8AB3C7F124D20C0E7149CE092EBA376A8DAAE3123E35FF61FED5900C64641', 'https://librarycatalogue.com/images/anast-profile2', 1, '0354216789', 'anastasiaschenko@example.com'),
+(9, 'Anastasia Shevchenko', '9EB8AB3C7F124D20C0E7149CE092EBA376A8DAAE3123E35FF61FED5900C64641', 'https://librarycatalogue.com/images/anast-profile2', 2, '0354216789', 'anastasiaschenko@yahoo.com'),
 (10, 'Adam Wan', '0C8309944396F41CB19D67489214799B3444DA606775AA94A84C75B7B02B3281', 'https://librarycatalogue.com/images/adam-wan-profile1', 1, '0328468516', 'adamwan@example.com'),
-(11, 'Aaron Goh', 'ED064A77A8F3B9A3E58C729E8D4751B706B5DF847E9812DEF5184FBA28BDFD55', 'https://librarycatalogue.com/images/goh-aaron-profilepic', 1, '0123449888', 'aarongoh@example.com'),
+(11, 'Aaron Goh', 'ED064A77A8F3B9A3E58C729E8D4751B706B5DF847E9812DEF5184FBA28BDFD55', 'https://librarycatalogue.com/images/goh-aaron-profilepic', 1, '0123449888', 'aarongoh@yahoo.com'),
 (12, 'Muhammad Abdul', '2E33A185C34010008551F4508D88B2B944C0825689A1206E7B59327141C1624C', 'https://librarycatalogue.com/images/muhammad-abdul-profilep', 1, '0154662337', 'muhammadabdul@example.com'),
-(13, 'Daniel Kim', 'B0269AAF7C3CE170070B602444ABCA9DFF5586A85E3CB143038D6AD473122F81', 'https://librarycatalogue.com/images/kim-daniel-face2', 1, '0234989878', 'danielkim@example.com'),
+(13, 'Daniel Kim', 'B0269AAF7C3CE170070B602444ABCA9DFF5586A85E3CB143038D6AD473122F81', 'https://librarycatalogue.com/images/kim-daniel-face2', 1, '0234989878', 'danielkim@yahoo.com'),
 (14, 'Somchai Ayutthaya', 'C9E5590EE7C92CEA9FA20D8F01AF0063C6FF0CB00870FC1B7701BB08E13B80E5', 'https://librarycatalogue.com/images/somchai-ayut-profilepic2', 1, '0233265577', 'somchaiayutthaya@example.com'),
 (15, 'Chanthra Suwan', '01D67A70CCCBEC9A3A30758312B2FE1F6042CFCDCE78F325C7E05EF99FB4D499', 'https://librarycatalogue.com/images/chantra-profiles', 1, '0214551554', 'chantrasuwan@example.com'),
 (16, 'Jane Smith', 'AD7EC6522E9609082B3D4DCEEDD47ED552E1FB5106118F30548CF63DA263CD83', 'https://librarycatalogue.com/images/jane-smith-picture', 1, '0334558614', 'janesmith@example.com'),
-(17, 'Emily Wong', '1BF61A4E4E177FCDC5D8C7F06A3952F1D1A7BD176C9B825AB2C3682BA9A4BBCA', 'https://librarycatalogue.com/images/emily-wong-profpic', 1, '0451127745', 'emilywong@example.com'),
+(17, 'Emily Wong', '1BF61A4E4E177FCDC5D8C7F06A3952F1D1A7BD176C9B825AB2C3682BA9A4BBCA', 'https://librarycatalogue.com/images/emily-wong-profpic', 1, '0451127745', 'emilywong@yahoo.com'),
 (18, 'Joseph Bautista', '9785BB6914F7241A4F51115EB6F26FE2B33106226AF49F1FB88FAA8FBA5DB4CD', 'https://librarycatalogue.com/images/joseph-bautista-pics2', 1, '0327859987', 'josephbautista@example.com'),
-(19, 'David Tan', '4EE9262B59B892F9585A921F95E5DAC812E193B641FEF4A02A1C7B70254503BB', 'https://librarycatalogue.com/images/david-tan-profilepicture', 1, '0345781121', 'davidtan@example.com'),
+(19, 'David Tan', '4EE9262B59B892F9585A921F95E5DAC812E193B641FEF4A02A1C7B70254503BB', 'https://librarycatalogue.com/images/david-tan-profilepicture', 1, '0345781121', 'davidtan@yahoo.com'),
 (20, 'Isaac Wong', 'BDF8D12CFA7412771AB4E809CAAD6C9C27A0007C380BA26EFA7EAF2964B1CED0', 'https://librarycatalogue.com/images/isaac-wong-profile2', 1, '0124456738', 'isaacwong@example.com');
 
 INSERT INTO `bookgenre` (`BookGenreID`, `BookISBN`, `GenreID`) VALUES
