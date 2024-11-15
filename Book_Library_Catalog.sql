@@ -307,7 +307,7 @@ INSERT INTO `favourites` (`FavouritesID`, `UserID`, `BookISBN`) VALUES
 (2, 13, '0764570684'),
 (3, 8, '9781495969058'),
 (4, 7, '9780452262935'),
-(5, 9, '9781495969058');
+(5, 9, '9781495969058'),
 (6, 13, '0470317264');
 
 INSERT INTO `following` (`FollowingID`, `UserID`, `AuthorID`, `FollowingUserID`) VALUES
