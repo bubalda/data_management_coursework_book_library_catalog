@@ -14,7 +14,7 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Analytical Queries</h1>
-                    <p class="mb-4">All Analytical Queries and Their results will be shown here From WEEK-5 Lab Handout.
+                    <p class="mb-4">All Analytical Queries and Their results are shown here.
                         </p>
                     
                         <?php
