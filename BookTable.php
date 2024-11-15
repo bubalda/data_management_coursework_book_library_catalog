@@ -34,7 +34,7 @@
                                             <th>PublishedYear</th>
                                             <th>AuthorID</th>
                                             <th>PageCount</th>
-                                            <th>Description</th>
+                                            <th>BookDescription</th>
                                             <th>ReadingLink</th>
                                             <th>AvailableCount</th>
                                         </tr>
@@ -68,7 +68,7 @@
                                         echo "<td>".$row["PublishedYear"]  ."</td>";
                                         echo "<td>".$row["AuthorID"]  ."</td>";
                                         echo "<td>".$row["PageCount"]  ."</td>";
-                                        echo "<td>".$row["Description"]  ."</td>";
+                                        echo "<td>".$row["BookDescription"]  ."</td>";
                                         echo "<td>".$row["ReadingLink"]  ."</td>";
                                         echo "<td>".$row["AvailableCount"]  ."</td>";
                                         echo "</tr>";

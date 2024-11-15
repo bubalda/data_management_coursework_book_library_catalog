@@ -29,7 +29,7 @@ CREATE TABLE `book` (
   `PublishedYear` year(4) NOT NULL,
   `AuthorID` int(11) NOT NULL,
   `PageCount` int(11) NOT NULL,
-  `Description` varchar(255) DEFAULT NULL,
+  `BookDescription` varchar(255) DEFAULT NULL,
   `ReadingLink` varchar(255) DEFAULT NULL,
   `AvailableCount` int(11) NOT NULL,
 
@@ -42,7 +42,7 @@ CREATE TABLE `book` (
 CREATE TABLE `genre` (
   `GenreID` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL,
   `GenreName` varchar(255) NOT NULL,
-  `Description` varchar(255) DEFAULT NULL
+  `GenreDescription` varchar(255) DEFAULT NULL
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -53,7 +53,7 @@ CREATE TABLE `user` (
   `UserIcon` varchar(255) NOT NULL,
   `UserPermissionLevel` int(11) NOT NULL,
   `PhoneNumber` varchar(20) NOT NULL UNIQUE,
-  `Email` varchar(32) NOT NULL UNIQUE
+  `UserEmail` varchar(32) NOT NULL UNIQUE
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -163,7 +163,7 @@ INSERT INTO `author` (`AuthorID`, `AuthorName`) VALUES
 (13, 'Dan Gookin'),
 (14, 'Allen G. Taylor');
 
-INSERT INTO `book` (`BookISBN`, `BookName`, `CoverPicture`, `PublishedYear`, `AuthorID`, `PageCount`, `Description`, `ReadingLink`, `AvailableCount`) VALUES
+INSERT INTO `book` (`BookISBN`, `BookName`, `CoverPicture`, `PublishedYear`, `AuthorID`, `PageCount`, `BookDescription`, `ReadingLink`, `AvailableCount`) VALUES
 ('0470317264', 'C++ for Dummies', 'https://librarycatalogue.com/books/c++-for-dummies-cover', '2009', 9, 402, 'C++ For Dummies, 6th Edition, helps you understand C++ programming. It\'s full of examples to show you how things work, and explains the why so you understand how the pieces fit together.', 'https://librarycatalogue.com/books/c++-for-dummies/1', 2),
 ('0470467010', 'Linux for Dummies', 'https://librarycatalogue.com/images/linux-for-dummies-cover9', '2009', 10, 456, 'If you\'ve been wanting to migrate to Linux, this book is the best way to get there.', 'https://librarycatalogue.com/books/linux-for-dummies/1', 5),
 ('0470527587', 'PHP & MySQL for Dummies', 'https://libraraycatalogue.com/images/php-&-mysql-for-dummies-cover4', '2009', 11, 464, 'Here\'s what Web Designers need to know to create dynamic, database-driven Web sites\r\nTo be on the cutting edge, Web sites need to serve up HTML, CSS, and products specific to the needs of different customers using different browsers.', 'https://librarycatalogue.com/books/php-&-mysql-for-dummies/1', 4),
@@ -185,7 +185,7 @@ INSERT INTO `book` (`BookISBN`, `BookName`, `CoverPicture`, `PublishedYear`, `Au
 ('9781435162068', 'The Divine Comedy', 'https://librarycatalogue.com/images/the-divine-comedy-cover3', '1901', 5, 928, 'Dante Alighieri\'s The Divine Comedy is one of the most critically lauded works of Renaissance literature. It tells the story of Dante making his way through the three realms of the Christian afterlife.', 'https://librarycatalogue.com/books/the-divine-comedy/1', 2),
 ('9781495969058', 'The Brothers Karamazov', 'https://librarycatalogue.com/images/the-brothers-karamazov-cover1', '1901', 6, 875, 'The Brothers Karamazov is a novel with a simple plot about a murder and a complex discussion of faith, doubt, and morality.', 'https://librarycatalogue.com/books/the-brothers-karamazov/1', 6);
 
-INSERT INTO `genre` (`GenreID`, `GenreName`, `Description`) VALUES
+INSERT INTO `genre` (`GenreID`, `GenreName`, `GenreDescription`) VALUES
 (1, 'Fantasy', 'A genre of fiction that contains elements that cannot exist in the real world.'),
 (2, 'Mystery', 'Genre of fiction where the nature of an event (usually a murder or other crime) remains mysterious until the end of the story.'),
 (3, 'Fiction', 'Any narrative work portraying individuals, events, or places that are imaginary or in ways that are imaginary.'),
@@ -207,7 +207,7 @@ INSERT INTO `genre` (`GenreID`, `GenreName`, `Description`) VALUES
 (19, 'Comedy', 'Books about a series of funny or comical events or scenes intended to make the reader laugh.'),
 (20, 'Graphic Novels', 'Novels in comic-strip format.');
 
-INSERT INTO `user` (`UserID`, `UserName`, `PasswordHash`, `UserIcon`, `UserPermissionLevel`, `PhoneNumber`, `Email`) VALUES
+INSERT INTO `user` (`UserID`, `UserName`, `PasswordHash`, `UserIcon`, `UserPermissionLevel`, `PhoneNumber`, `UserEmail`) VALUES
 (1, 'John Doe', '94890005F3B2117A353DA7260259531878CAE4F541BF59998511887D1F0221A5', 'https://librarycatalogue.com/images/john-doe-profile1', 2, '0123456789', 'johndoe@example.com'),
 (2, 'Jane Doe', 'ED37D99B1445238AF3386F81A77A2CAF3FFFC0CD610BE39B4F3BA53943DC66BF', 'https://librarycatalogue.com/images/john-doe-profilepic', 1, '0124329765', 'janedoe@yahoo.com'),
 (3, 'Alice Lee', '35B6AEF9BC9577CA8A7DC11F420040355C3DA63577503925B224D4B494E77D4B', 'https://librarycatalogue.com/images/alice-lee-pic1', 2, '0164571259', 'alice.lee@yahoo.com'),
@@ -335,7 +335,3 @@ INSERT INTO `rating` (`RatingID`, `UserID`, `BookISBN`, `Stars`, `Comments`, `Da
 (7, 3, '1408855682', 4, NULL, '2024-11-10 19:16:46');
 
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

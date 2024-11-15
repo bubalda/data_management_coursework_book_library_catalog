@@ -14,7 +14,7 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Analytical Queries</h1>
-                    <p class="mb-4">All Analytical Queries and Their results will be shown here From WEEK-5 Lab Handout.
+                    <p class="mb-4">All Analytical Queries and Their results are shown here.
                         </p>
                     
                         <?php
@@ -256,9 +256,9 @@
                         
                         //***************************** */
                         // Example Query 20
-                        $sql = "SELECT u.UserName, u.Email 
+                        $sql = "SELECT u.UserName, u.UserEmail 
                         FROM User u 
-                        WHERE u.Email LIKE '%yahoo%';";
+                        WHERE u.UserEmail LIKE '%yahoo%';";
                         $queryTitle = "Query-20";
                         $queryDescription = "Find All Users Having Yahoo In Email Domain";
                         //CALL FUNCTION to generate table
