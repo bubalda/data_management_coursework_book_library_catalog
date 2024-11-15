@@ -30,7 +30,7 @@
                                         <tr>
                                             <th>GenreID</th>
                                             <th>GenreName</th>
-                                            <th>Description</th>
+                                            <th>GenreDescription</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -57,7 +57,7 @@
                                         echo "<tr>";
                                                     echo "<td>".$row["GenreID"]  ."</td>";
                                                     echo "<td>".$row["GenreName"]  ."</td>";
-                                                    echo "<td>".$row['Description']. "</td>";
+                                                    echo "<td>".$row['GenreDescription']. "</td>";
                                                     echo "</tr>";
                                         //echo $row["count(*)"];
                                     }
