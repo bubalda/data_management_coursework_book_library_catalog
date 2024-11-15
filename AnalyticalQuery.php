@@ -128,8 +128,7 @@
                         FROM user u
                         RIGHT JOIN favourites f ON u.UserID = f.UserID
                         GROUP BY u.UserID
-                        HAVING FavoriteCount > 2;
-                        ";
+                        HAVING FavoriteCount >= 2;";
                         $queryTitle = "Query-9";
                         $queryDescription = "Find Users Who Have Favorited More Than 2 Books";
                         //CALL FUNCTION to generate table
