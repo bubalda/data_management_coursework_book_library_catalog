@@ -33,7 +33,7 @@
                                             <th>UserIcon</th>
                                             <th>UserPermissionLevel</th>
                                             <th>PhoneNumber</th>
-                                            <th>Email</th>
+                                            <th>UserEmail</th>
                                         </tr>
                                         
                                     </thead>
@@ -64,7 +64,7 @@
                                         echo   "<td>".$row['UserIcon']. "</td>";
                                         echo   "<td>".$row['UserPermissionLevel']. "</td>";
                                         echo   "<td>".$row['PhoneNumber']. "</td>";
-                                        echo   "<td>".$row['Email']. "</td>";
+                                        echo   "<td>".$row['UserEmail']. "</td>";
                                         echo "</tr>";
                                         //echo $row["count(*)"];
                                     }

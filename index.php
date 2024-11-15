@@ -217,14 +217,11 @@
                                     <h6 class="m-0 font-weight-bold text-primary">ERD Diagram of the System</h6>
                                     
                                 </div>
-                                
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <div class="chart-area">
+                                    <div class="chart-area" style="height: 80vh">
                                                 <!--   YOUR ERD DIAGRAM IMAGE -->
-                                        <img class=" d-flex" src="images/Book_Library_Catalog_erdiagram.png" alt="ERD of Project" > 
-                                        
-                                      
+                                        <img class="d-flex" src="images/Book_Library_Catalog_ERD.png" style="width: 110vh" alt="ERD of Project" > 
                                     </div>
                                 </div>
                             </div>
@@ -242,13 +239,13 @@
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <div class="chart-pie pt-4 pb-2">
-                                    <h5>Student Name: </h5>
-                                        <h5>Student ID: </h5>
-                                        <h5>Student Email: </h5>
+                                    <h5>Student Name: Mah Han Cheng</h5>
+                                        <h5>Student ID: 36271632</h5>
+                                        <h5>Student Email: hcm1e24@soton.ac.uk</h5>
                                         <br><br>
-                                        <h5> Student Name: </h5>
-                                        <h5>Student ID: </h5>
-                                        <h5>Student Email: </h5>
+                                        <h5> Student Name: Leong Ngai Cong</h5>
+                                        <h5>Student ID: 36591149</h5>
+                                        <h5>Student Email: ncl1e24@soton.ac.uk</h5>
                                     </div>
                                     <div class="mt-4 text-center small">
                                         <span class="mr-2">

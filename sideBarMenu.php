@@ -51,11 +51,6 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                PHP CURD Operation
-            </div>
-
             
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
@@ -98,21 +93,24 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="InsertRecord.php">
+                <a class="nav-link"> 
+                    <!-- href="InsertRecord.php"> -->
                     <i class="fas fa-fw fa-table"></i>
                     <span>Insert Data</span></a>
             </li>
 
              <!-- Nav Item - Tables -->
              <li class="nav-item">
-                <a class="nav-link" href="Update_Record.php">
+                <a class="nav-link"> 
+                    <!-- href="Update_Record.php"> -->
                     <i class="fas fa-fw fa-table"></i>
                     <span>Update Data</span></a>
             </li>
 
              <!-- Nav Item - Tables -->
              <li class="nav-item">
-                <a class="nav-link" href="Update_Record.php">
+                <a class="nav-link"> 
+                    <!-- href="Update_Record.php"> -->
                     <i class="fas fa-fw fa-table"></i>
                     <span>Delete Data</span></a>
             </li>
@@ -126,7 +124,7 @@
             
 
             <!-- Divider -->
-            <hr class="sidebar-divider">
+            <!-- <hr class="sidebar-divider"> -->
 
             <!-- Heading -->
             <!-- <div class="sidebar-heading">
@@ -169,7 +167,7 @@
             </li> -->
 
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+            <!-- <hr class="sidebar-divider d-none d-md-block"> -->
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
