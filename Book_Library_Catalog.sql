@@ -185,7 +185,7 @@ INSERT INTO `book` (`BookISBN`, `BookName`, `CoverPicture`, `PublishedYear`, `Au
 ('9781435162068', 'The Divine Comedy', 'https://librarycatalogue.com/images/the-divine-comedy-cover3', '1901', 5, 928, 'Dante Alighieri\'s The Divine Comedy is one of the most critically lauded works of Renaissance literature. It tells the story of Dante making his way through the three realms of the Christian afterlife.', 'https://librarycatalogue.com/books/the-divine-comedy/1', 2),
 ('9781495969058', 'The Brothers Karamazov', 'https://librarycatalogue.com/images/the-brothers-karamazov-cover1', '1901', 6, 875, 'The Brothers Karamazov is a novel with a simple plot about a murder and a complex discussion of faith, doubt, and morality.', 'https://librarycatalogue.com/books/the-brothers-karamazov/1', 6);
 
-INSERT INTO `genre` (`GenreID`, `GenreName`, `Decription`) VALUES
+INSERT INTO `genre` (`GenreID`, `GenreName`, `Description`) VALUES
 (1, 'Fantasy', 'A genre of fiction that contains elements that cannot exist in the real world.'),
 (2, 'Mystery', 'Genre of fiction where the nature of an event (usually a murder or other crime) remains mysterious until the end of the story.'),
 (3, 'Fiction', 'Any narrative work portraying individuals, events, or places that are imaginary or in ways that are imaginary.'),
