@@ -88,32 +88,32 @@
 
             
 
-            <!-- Divider -->
+            <!-- Divider
             <hr class="sidebar-divider d-none d-md-block">
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link"> 
+            <!-- <li class="nav-item">
+                <a class="nav-link">  -->
                     <!-- href="InsertRecord.php"> -->
-                    <i class="fas fa-fw fa-table"></i>
+                    <!-- <i class="fas fa-fw fa-table"></i>
                     <span>Insert Data</span></a>
-            </li>
+            </li> -->
 
              <!-- Nav Item - Tables -->
-             <li class="nav-item">
+             <!-- <li class="nav-item">
                 <a class="nav-link"> 
                     <!-- href="Update_Record.php"> -->
-                    <i class="fas fa-fw fa-table"></i>
+                    <!-- <i class="fas fa-fw fa-table"></i>
                     <span>Update Data</span></a>
-            </li>
+            </li> -->
 
              <!-- Nav Item - Tables -->
-             <li class="nav-item">
+             <!-- <li class="nav-item">
                 <a class="nav-link"> 
                     <!-- href="Update_Record.php"> -->
-                    <i class="fas fa-fw fa-table"></i>
+                    <!-- <i class="fas fa-fw fa-table"></i>
                     <span>Delete Data</span></a>
-            </li>
+            </li> -->
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
